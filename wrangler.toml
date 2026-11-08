@@ -1,0 +1,8 @@
+name = "emerald-gold-wedding"
+compatibility_date = "2026-11-08"
+pages_build_output_dir = "./public"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "emerald-wedding-db"
+database_id = "GANTI_DENGAN_DATABASE_ID_D1_ANDA"

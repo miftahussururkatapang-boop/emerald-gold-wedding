@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Dashboard Admin - Emerald Gold Wedding</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="admin-page">
+  <main class="admin-wrap">
+    <header class="admin-header">
+      <div>
+        <p class="eyebrow">EMERALD GOLD WEDDING</p>
+        <h1>Dashboard Admin</h1>
+      </div>
+      <button id="logoutBtn" class="btn btn-outline" hidden>Keluar</button>
+    </header>
+
+    <!-- Panel Login Admin -->
+    <section id="loginPanel" class="panel">
+      <div class="panel-title">
+        <h2>Masuk Dashboard</h2>
+      </div>
+      <p class="muted" style="margin-bottom:18px; font-size:13px; color:#556b61;">Masukkan Password Admin yang telah didaftarkan pada Cloudflare Environment Secrets (<code>ADMIN_PASSWORD</code>).</p>
+      <form id="loginForm" class="admin-form">
+        <label>
+          Password Administrator
+          <input id="password" type="password" placeholder="••••••••••••" autocomplete="current-password" required>
+        </label>
+        <button class="btn btn-green btn-block" style="margin-top:10px;" type="submit">Masuk ke Dashboard</button>
+        <p id="loginStatus" class="form-status" style="margin-top:12px;"></p>
+      </form>
+    </section>
+
+    <!-- Konten Dashboard Utama -->
+    <div id="dashboard" hidden>
+      <!-- Statistik Ringkas -->
+      <section class="stats">
+        <div class="stat">
+          <span>Total Undangan</span>
+          <b id="totalInv">0</b>
+        </div>
+        <div class="stat">
+          <span>Total RSVP</span>
+          <b id="totalRsvp">0</b>
+        </div>
+        <div class="stat">
+          <span>Estimasi Hadir</span>
+          <b id="totalAttend">0</b>
+        </div>
+      </section>
+
+      <!-- Daftar Undangan -->
+      <section class="panel">
+        <div class="panel-title">
+          <div>
+            <p class="eyebrow">MANAJEMEN</p>
+            <h2>Daftar Undangan Pernikahan</h2>
+          </div>
+          <button id="newInvitation" class="btn btn-gold">+ Buat Undangan</button>
+        </div>
+        <div id="invitationList">Memuat data...</div>
+      </section>
+
+      <!-- Form Tambah / Edit Undangan -->
+      <section id="editorPanel" class="panel" hidden>
+        <div class="panel-title">
+          <h2 id="editorTitle">Data Undangan</h2>
+          <button id="closeEditor" class="btn btn-outline">Tutup</button>
+        </div>
+        <form id="invitationForm" class="admin-form">
+          <input type="hidden" id="invId">
+          <div class="form-grid">
+            <div>
+              <label>Slug URL (contoh: demo / ahmad-siti)
+                <input id="slug" required pattern="[a-z0-9-]+" placeholder="ahmad-siti">
+              </label>
+            </div>
+            <div>
+              <label class="check-inline" style="margin-top:28px;">
+                <input id="published" type="checkbox" checked> Terbitkan Undangan (Publik)
+              </label>
+            </div>
+
+            <div>
+              <label>Nama Mempelai Pria
+                <input id="groomName" placeholder="Ahmad Nur Syahid, S.Kom." required>
+              </label>
+            </div>
+            <div>
+              <label>Nama Mempelai Wanita
+                <input id="brideName" placeholder="Siti Sa'diyah, S.Pd." required>
+              </label>
+            </div>
+
+            <div>
+              <label>Orang Tua Mempelai Pria
+                <input id="groomParents" placeholder="Bapak Tasimun & Ibu Musriyati">
+              </label>
+            </div>
+            <div>
+              <label>Orang Tua Mempelai Wanita
+                <input id="brideParents" placeholder="Alm. Bapak Dadang & Ibu Oom">
+              </label>
+            </div>
+
+            <div>
+              <label>Tanggal Acara
+                <input id="eventDate" type="date">
+              </label>
+            </div>
+            <div>
+              <label>Waktu Akad Nikah
+                <input id="eventTime" placeholder="08.00 - 10.00 WIB">
+              </label>
+            </div>
+
+            <div>
+              <label>Waktu Resepsi
+                <input id="receptionTime" placeholder="11.00 - 16.00 WIB">
+              </label>
+            </div>
+            <div>
+              <label>Nama Tempat / Gedung
+                <input id="venue" placeholder="Gedung Serbaguna Miftahussurur">
+              </label>
+            </div>
+
+            <div class="wide">
+              <label>Alamat Lengkap
+                <textarea id="address" rows="2" placeholder="Jl. Sukamaju No. 12, Katapang, Bandung"></textarea>
+              </label>
+            </div>
+
+            <div class="wide">
+              <label>Link Google Maps
+                <input id="mapsUrl" type="url" placeholder="https://maps.google.com/?q=...">
+              </label>
+            </div>
+
+            <div class="wide">
+              <label>Kutipan / Ayat Al-Qur'an
+                <textarea id="quoteText" rows="2" placeholder="Dan di antara tanda-tanda (kebesaran)-Nya..."></textarea>
+              </label>
+            </div>
+
+            <div class="wide">
+              <label>Cerita / Our Story
+                <textarea id="storyText" rows="3" placeholder="Ceritakan perjalanan cinta kedua mempelai..."></textarea>
+              </label>
+            </div>
+
+            <div class="wide">
+              <label>URL Musik Latar (Direct MP3 Link)
+                <input id="musicUrl" type="url" placeholder="https://domain.com/musik.mp3">
+              </label>
+            </div>
+
+            <div class="wide">
+              <label>URL Foto Sampul (Cover Image)
+                <input id="coverImage" type="url" placeholder="https://images.unsplash.com/photo-...">
+              </label>
+            </div>
+
+            <div class="wide">
+              <label>URL Video Pernikahan (YouTube Link)
+                <input id="videoUrl" type="url" placeholder="https://www.youtube.com/watch?v=...">
+              </label>
+            </div>
+
+            <!-- Amplop Digital -->
+            <div>
+              <label>Nama Bank / E-Wallet
+                <input id="bankName" placeholder="Bank Syariah Indonesia (BSI)">
+              </label>
+            </div>
+            <div>
+              <label>Nomor Rekening / No. HP E-Wallet
+                <input id="bankAccount" placeholder="7123456789">
+              </label>
+            </div>
+            <div>
+              <label>Atas Nama Pemilik Rekening
+                <input id="bankHolder" placeholder="Ahmad Nur Syahid">
+              </label>
+            </div>
+            <div>
+              <label>Alamat Kirim Kado Fisik
+                <input id="giftAddress" placeholder="Jl. Sukamaju No. 12, Katapang, Bandung">
+              </label>
+            </div>
+
+            <div class="wide">
+              <label>Galeri Foto (Satu URL per baris)
+                <textarea id="galleryUrls" rows="3" placeholder="https://domain.com/foto1.jpg&#10;https://domain.com/foto2.jpg"></textarea>
+              </label>
+            </div>
+          </div>
+
+          <button class="btn btn-green btn-block" style="margin-top:16px;" type="submit">Simpan Undangan</button>
+          <p id="editorStatus" class="form-status"></p>
+        </form>
+      </section>
+
+      <!-- Panel Manajemen Tamu & Link Personal -->
+      <section id="guestPanel" class="panel" hidden>
+        <div class="panel-title">
+          <div>
+            <p class="eyebrow">LINK PERSONAL</p>
+            <h2 id="guestTitle">Daftar Tamu</h2>
+          </div>
+          <button id="closeGuests" class="btn btn-outline">Tutup</button>
+        </div>
+        <form id="guestForm" class="inline-form">
+          <input id="newGuestName" placeholder="Nama Tamu (misal: Bapak Ahmad & Keluarga)" maxlength="100" required>
+          <button class="btn btn-green" type="submit">+ Tambah Tamu</button>
+        </form>
+        <div id="guestList">Memuat tamu...</div>
+      </section>
+
+      <!-- Panel Rekap RSVP & Buku Tamu -->
+      <section id="rsvpPanel" class="panel" hidden>
+        <div class="panel-title">
+          <div>
+            <p class="eyebrow">DATA KEHADIRAN</p>
+            <h2 id="rsvpTitle">Rekap RSVP</h2>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <a id="exportCsvBtn" class="btn btn-gold" download>Unduh Rekap CSV</a>
+            <button id="closeRsvp" class="btn btn-outline">Tutup</button>
+          </div>
+        </div>
+        <div id="rsvpList">Memuat RSVP...</div>
+      </section>
+    </div>
+
+    <p class="admin-foot">Emerald Gold Wedding v1.0 · Dikelola secara aman menggunakan Cloudflare Pages & D1 Database.</p>
+  </main>
+  <script src="/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#073f35">
+  <title>The Wedding of Emerald & Gold</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="invitation-page">
+  <div id="loading" class="loading">
+    <div class="loader-spinner"></div>
+    <p>Menyiapkan Undangan Istimewa…</p>
+  </div>
+
+  <main id="app" hidden>
+    <!-- Cover Pembuka Penuh Layar -->
+    <section class="cover" id="cover">
+      <div class="cover-bg-glow"></div>
+      <div class="cover-border-frame"></div>
+      <div class="cover-inner">
+        <p class="eyebrow">WALIMATUL 'URSY</p>
+        <div class="islamic-calligraphy" aria-hidden="true">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+        <div class="ornament-divider"><span>✦</span></div>
+        <h1 id="coverNames" class="gold-gradient-text">Nama Mempelai</h1>
+        <p id="coverDate" class="cover-date"></p>
+        <div class="cover-photo-wrapper">
+          <div class="cover-photo" id="coverPhoto"></div>
+        </div>
+        <div class="guest-card">
+          <p class="guest-intro">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+          <h2 id="guestName" class="guest-name">Tamu Undangan</h2>
+          <p class="guest-note">Merupakan suatu kehormatan & kebahagiaan bagi kami apabila Anda berkenan hadir dan memberikan doa restu.</p>
+        </div>
+        <button id="openInvitation" class="btn btn-gold btn-pulse">
+          <span class="btn-icon">💌</span> Buka Undangan
+        </button>
+      </div>
+    </section>
+
+    <!-- Konten Isi Undangan -->
+    <div id="invitationContent" class="content" hidden>
+      <!-- Hero / Salam Pembuka -->
+      <header class="section hero">
+        <div class="islamic-header">
+          <div class="islamic-calligraphy-large">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+          <p class="greeting-arabic">Assalamu’alaikum Warahmatullahi Wabarakatuh</p>
+        </div>
+        <div class="quote-box">
+          <p id="quote" class="quote-text"></p>
+          <span class="quote-ref">(QS. Ar-Rum: 21)</span>
+        </div>
+      </header>
+
+      <!-- Profil Mempelai & Orang Tua -->
+      <section class="section couple-section">
+        <div class="section-title">
+          <span class="eyebrow">MEMPELAI</span>
+          <h2>Maha Suci Allah yang Mempersatukan Kami</h2>
+          <div class="gold-line"></div>
+        </div>
+        <div class="couple-grid">
+          <div class="couple-card">
+            <div class="couple-avatar male-avatar">🤵</div>
+            <h3 id="groom" class="couple-name">Mempelai Pria</h3>
+            <p id="groomParents" class="couple-parents"></p>
+          </div>
+          <div class="couple-ampersand">&</div>
+          <div class="couple-card">
+            <div class="couple-avatar female-avatar">👰</div>
+            <h3 id="bride" class="couple-name">Mempelai Wanita</h3>
+            <p id="brideParents" class="couple-parents"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Waktu, Tanggal & Hitung Mundur -->
+      <section class="section event-section">
+        <div class="section-title">
+          <span class="eyebrow">SAVE THE DATE</span>
+          <h2>Hari Bahagia Kami</h2>
+          <div class="gold-line"></div>
+        </div>
+
+        <div class="date-badge">
+          <span id="dateDay" class="date-day">00</span>
+          <div class="date-sub">
+            <span id="dateMonth" class="date-month">Bulan</span>
+            <span id="dateYear" class="date-year">Tahun</span>
+          </div>
+        </div>
+
+        <div class="countdown-container" id="countdown">
+          <div class="countdown-item"><span id="days" class="cd-num">00</span><span class="cd-label">Hari</span></div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-item"><span id="hours" class="cd-num">00</span><span class="cd-label">Jam</span></div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-item"><span id="minutes" class="cd-num">00</span><span class="cd-label">Menit</span></div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-item"><span id="seconds" class="cd-num">00</span><span class="cd-label">Detik</span></div>
+        </div>
+
+        <div class="events-wrapper">
+          <div class="event-card">
+            <div class="event-icon">💍</div>
+            <h3>Akad Nikah</h3>
+            <p id="eventTime" class="event-time"></p>
+            <p id="venue" class="event-venue"></p>
+            <p id="address" class="event-address"></p>
+          </div>
+          <div class="event-card" id="receptionCard" hidden>
+            <div class="event-icon">✨</div>
+            <h3>Resepsi Pernikahan</h3>
+            <p id="receptionTime" class="event-time"></p>
+            <p id="receptionVenue" class="event-venue"></p>
+            <p id="receptionAddress" class="event-address"></p>
+          </div>
+        </div>
+
+        <div class="maps-box">
+          <a id="maps" class="btn btn-gold-outline" target="_blank" rel="noopener">
+            <span>📍</span> Buka Petunjuk Google Maps
+          </a>
+        </div>
+      </section>
+
+      <!-- Our Story -->
+      <section class="section story-section" id="storySec">
+        <div class="section-title">
+          <span class="eyebrow">OUR STORY</span>
+          <h2>Kisah Perjalanan Kami</h2>
+          <div class="gold-line"></div>
+        </div>
+        <div class="story-content">
+          <p id="story" class="body-copy"></p>
+        </div>
+      </section>
+
+      <!-- Video Pernikahan -->
+      <section class="section video-section" id="videoSec" hidden>
+        <div class="section-title">
+          <span class="eyebrow">VIDEO KAMI</span>
+          <h2>Momen Spesial</h2>
+          <div class="gold-line"></div>
+        </div>
+        <div class="video-container" id="videoWrapper"></div>
+      </section>
+
+      <!-- Galeri Foto -->
+      <section class="section gallery-section" id="gallerySec">
+        <div class="section-title">
+          <span class="eyebrow">GALLERY</span>
+          <h2>Galeri Kenangan</h2>
+          <div class="gold-line"></div>
+        </div>
+        <div id="gallery" class="gallery-grid"></div>
+      </section>
+
+      <!-- Amplop Digital & Informasi Rekening / Kado -->
+      <section class="section gift-section" id="giftSec" hidden>
+        <div class="section-title">
+          <span class="eyebrow">TANDA KASIH</span>
+          <h2>Amplop Digital & Kado</h2>
+          <div class="gold-line"></div>
+          <p class="section-desc">Doa restu Anda merupakan karunia terindah bagi kami. Namun jika memberi adalah tanda kasih, Anda dapat memberikan tanda kasih secara digital.</p>
+        </div>
+        <div class="gift-cards">
+          <div class="gift-card" id="bankCard" hidden>
+            <div class="gift-icon">💳</div>
+            <h4 id="bankName">Bank</h4>
+            <div class="account-number-wrapper">
+              <span id="bankAccount" class="account-number"></span>
+              <button id="copyBankBtn" class="btn-copy">Salin No. Rekening</button>
+            </div>
+            <p class="account-holder">Atas Nama: <strong id="bankHolder"></strong></p>
+          </div>
+          <div class="gift-card" id="addressCard" hidden>
+            <div class="gift-icon">🎁</div>
+            <h4>Kirim Kado Fisik</h4>
+            <p id="giftAddress" class="gift-address-text"></p>
+            <button id="copyAddressBtn" class="btn-copy">Salin Alamat</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- RSVP & Buku Tamu -->
+      <section class="section rsvp-section">
+        <div class="section-title">
+          <span class="eyebrow">RSVP & UCAPAN</span>
+          <h2>Konfirmasi & Doa Restu</h2>
+          <div class="gold-line"></div>
+          <p class="section-desc">Bantu kami mempersiapkan jamuan terbaik dengan mengisi konfirmasi kehadiran di bawah ini.</p>
+        </div>
+
+        <form id="rsvpForm" class="rsvp-form card-glass">
+          <div class="form-group">
+            <label for="rsvpName">Nama Tamu</label>
+            <input id="rsvpName" type="text" maxlength="100" placeholder="Nama Anda" required>
+          </div>
+          <div class="form-group">
+            <label for="attendance">Konfirmasi Kehadiran</label>
+            <select id="attendance" required>
+              <option value="hadir">InsyaAllah Hadir</option>
+              <option value="tidak_hadir">Belum Dapat Hadir</option>
+              <option value="ragu">Masih Ragu / Belum Pasti</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="guestCount">Jumlah Tamu (termasuk Anda)</label>
+            <input id="guestCount" type="number" min="1" max="10" value="1" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Doa Restu & Ucapan Selamat</label>
+            <textarea id="message" maxlength="500" rows="3" placeholder="Tuliskan ucapan selamat atau untaian doa..."></textarea>
+          </div>
+          <button id="submitRsvpBtn" class="btn btn-gold btn-block" type="submit">Kirim Konfirmasi</button>
+          <p id="rsvpStatus" class="form-status" aria-live="polite"></p>
+        </form>
+
+        <!-- Buku Tamu Publik -->
+        <div class="wishes-section">
+          <h3>Buku Tamu & Doa (<span id="wishesCount">0</span>)</h3>
+          <div id="wishesList" class="wishes-list">
+            <p class="muted">Belum ada ucapan. Jadilah yang pertama memberikan doa restu!</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bagikan via WhatsApp -->
+      <section class="section share-section">
+        <button id="shareWaBtn" class="btn btn-whatsapp">
+          <span>💬</span> Bagikan Undangan ke WhatsApp
+        </button>
+      </section>
+
+      <!-- Penutup Islami & Footer -->
+      <footer class="footer section">
+        <p class="footer-closing">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kedua mempelai.</p>
+        <p class="footer-salam">Wassalamu’alaikum Warahmatullahi Wabarakatuh</p>
+        <div class="footer-names gold-gradient-text" id="footerNames">Nama Mempelai</div>
+        <div class="footer-copy">
+          <small>Emerald Gold Wedding · Platform Undangan Pernikahan Elegan & Modern</small>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <!-- Audio Musik Latar & Tombol Kontrol Floating -->
+  <audio id="music" loop preload="none"></audio>
+  <button id="musicToggle" class="music-toggle" hidden aria-label="Putar atau jeda musik">
+    <span class="music-icon">🎵</span>
+  </button>
+
+  <script src="/app.js"></script>
+</body>
+</html>
