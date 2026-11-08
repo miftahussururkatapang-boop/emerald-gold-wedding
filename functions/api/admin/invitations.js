@@ -1,4 +1,4 @@
-import { json, body, requireAdmin, slugOk } from './_utils.js';
+import { json, body, requireAdmin, slugOk } from '../_utils.js';
 
 export async function onRequestGet({ request, env }) {
   if (!await requireAdmin(request, env)) return json({ error: 'Belum login.' }, 401);
